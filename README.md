@@ -1,4 +1,4 @@
-# Initial page
+# Why I Wrote This Guide
 
 I wrote this guide in preparation for my Smartly.io interview. I was interviewing for a Technical Account Manager role, and in approximately 1 week had to go from zero FB Marketing knowledge to becoming a FB Marketing guru.
 
