@@ -4,6 +4,7 @@
 * [Why Facebook Marketing?](why-facebook-marketing.md)
 * [Examples of What's Possible](examples-of-whats-possible.md)
 * [Facebook's Tools](facebooks-tools.md)
+* [Optimizations](optimizations.md)
 * [Why Choose a Product Like Smartly](why-choose-a-product-like-smartly.md)
 * [Articles To Read](articles-to-read.md)
 
