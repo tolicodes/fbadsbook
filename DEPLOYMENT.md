@@ -16,4 +16,4 @@ October 3, 2026: implementation `477284a` produced seven chapter pages, with all
 
 This is the preserved historical guide, not an update to present-day advertising practices. Existing external references remain as authored. Build tooling's `http-cache-semantics` dependency has an advisory with no newer package available during setup; deployed output contains only HTML and CSS, with no server or runtime dependencies.
 
-The toli.me GitHub source link was corrected in `tolicodes/toli.me` commit `167ba3e`. The live apex site is a separate Carrd page; its direct link edit still requires an authenticated Carrd session as of this verification.
+Toli clarified that the requested portfolio link belongs on **tolicodes.com**, the public Sites portfolio. Its source commit `fdd334d440d6642a8167ff923d3fddba1622f677` changes the FB Ads Book title/action destinations to `https://fbads.toli.me/` and labels the action “Read the book.” The separate `toli.me` source change was reverted in `d64dd07` after this clarification; no Carrd edit is required.
