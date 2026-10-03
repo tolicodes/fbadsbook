@@ -1,0 +1,55 @@
+---
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { createMarkdownProcessor } from '@astrojs/markdown-remark';
+import '../styles/book.css';
+
+export async function getStaticPaths() {
+  const summary = readFileSync(resolve('../SUMMARY.md'), 'utf8');
+  const chapters = [...summary.matchAll(/\* \[(.+)\]\((.+\.md)\)/g)].map(([, title, file]) => ({
+    title, file, slug: file === 'README.md' ? '' : file.replace(/\.md$/, ''),
+  }));
+  const processor = await createMarkdownProcessor();
+  return Promise.all(chapters.map(async (chapter, index) => {
+    const source = readFileSync(resolve('..', chapter.file), 'utf8');
+    const { code } = await processor.render(source);
+    return { params: { chapter: chapter.slug || undefined }, props: { chapter, chapters, index, code } };
+  }));
+}
+
+const { chapter, chapters, index, code } = Astro.props;
+const previous = chapters[index - 1];
+const next = chapters[index + 1];
+const href = (item) => item.slug ? `/${item.slug}/` : '/';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{chapter.title} · FB Ads Book</title>
+    <meta name="description" content="Toli Zaslavskiy's original guide to Facebook advertising, tools, optimization and Smartly.io." />
+    <link rel="canonical" href={`https://fbads.toli.me${href(chapter)}`} />
+  </head>
+  <body>
+    <a class="skip" href="#chapter">Skip to chapter</a>
+    <aside>
+      <a class="book-title" href="/">FB Ads Book</a>
+      <p class="byline">By <a href="https://toli.me/">Toli Zaslavskiy</a></p>
+      <nav aria-label="Chapters">
+        <ol>
+          {chapters.map((item) => <li><a href={href(item)} aria-current={item.slug === chapter.slug ? 'page' : undefined}>{item.title}</a></li>)}
+        </ol>
+      </nav>
+      <a class="source" href="https://github.com/tolicodes/fbadsbook">View source on GitHub ↗</a>
+    </aside>
+    <main id="chapter" tabindex="-1">
+      <p class="eyebrow">FB Ads Book · Chapter {index + 1} of {chapters.length}</p>
+      <article set:html={code} />
+      <nav class="pagination" aria-label="Continue reading">
+        {previous ? <a href={href(previous)}><small>← Previous</small>{previous.title}</a> : <span />}
+        {next && <a href={href(next)}><small>Next →</small>{next.title}</a>}
+      </nav>
+    </main>
+  </body>
+</html>
