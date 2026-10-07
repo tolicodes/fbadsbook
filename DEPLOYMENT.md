@@ -24,4 +24,6 @@ PostHog project 651591 (US), pinned posthog-js 1.438.2, loads asynchronously onl
 
 Inputs are masked; private-marked elements are blocked; console logs and network headers/bodies are excluded. Analytics URL properties remove queries, credentials and unknown fragments; this is not a guarantee of redaction of every replay snapshot URL. Public book/page text and images remain visible. No user identification or person profiles are created. Analytics failure does not interrupt rendering.
 
-The production build and all four analytics privacy-policy checks passed before committing. Deployment and receipt of a real recording are verified separately after publication. Existing content, hosting and redirects are preserved.
+The production build and all four analytics privacy-policy checks passed before committing. Deployment is verified below. Receipt/playback of a real recording is tracked separately in the Wiki/rollout evidence. Existing content, hosting and redirects are preserved.
+
+October 7 deployment verification: The Netlify production build is live: all seven chapters match the tested HTML byte for byte over trusted HTTPS. This documentation commit does not republish application code.
