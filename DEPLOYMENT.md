@@ -17,3 +17,11 @@ October 3, 2026: implementation `477284a` produced seven chapter pages, with all
 This is the preserved historical guide, not an update to present-day advertising practices. Existing external references remain as authored. Build tooling's `http-cache-semantics` dependency has an advisory with no newer package available during setup; deployed output contains only HTML and CSS, with no server or runtime dependencies.
 
 Toli clarified that the requested portfolio link belongs on **tolicodes.com**, the public Sites portfolio. Its source commit `fdd334d440d6642a8167ff923d3fddba1622f677` changes the FB Ads Book title/action destinations to `https://fbads.toli.me/` and labels the action “Read the book.” The separate `toli.me` source change was reverted in `d64dd07` after this clarification; no Carrd edit is required.
+
+## Public session replay — October 7, 2026
+
+PostHog project 651591 (US), pinned posthog-js 1.438.2, loads asynchronously only on the production canonical hostname. Each session is labeled with `site`. Localhost, preview hosts, Do Not Track and Global Privacy Control skip initialization. Publishable client token is source configuration; no personal API credential is included.
+
+Inputs are masked; private-marked elements are blocked; console logs and network headers/bodies are excluded. Analytics URL properties remove queries, credentials and unknown fragments; this is not a guarantee of redaction of every replay snapshot URL. Public book/page text and images remain visible. No user identification or person profiles are created. Analytics failure does not interrupt rendering.
+
+The production build and all four analytics privacy-policy checks passed before committing. Deployment and receipt of a real recording are verified separately after publication. Existing content, hosting and redirects are preserved.

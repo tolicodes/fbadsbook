@@ -11,5 +11,8 @@
   "devDependencies": {
     "@astrojs/markdown-remark": "7.3.0",
     "astro": "7.3.5"
+  },
+  "dependencies": {
+    "posthog-js": "1.438.2"
   }
 }
