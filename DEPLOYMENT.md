@@ -27,3 +27,9 @@ Inputs are masked; private-marked elements are blocked; console logs and network
 The production build and all four analytics privacy-policy checks passed before committing. Deployment is verified below. Receipt/playback of a real recording is tracked separately in the Wiki/rollout evidence. Existing content, hosting and redirects are preserved.
 
 October 7 deployment verification: The Netlify production build is live: all seven chapters match the tested HTML byte for byte over trusted HTTPS. This documentation commit does not republish application code.
+
+## Replay viewport correction — October 7, 2026
+
+The original network-mask callback returned null for every call. SDK 1.438.2 also invokes it with a URL-only object to mask replay page metadata; dropping that call removed the rrweb Meta event and its viewport dimensions, leaving the playback iframe hidden. Received sessions/full DOM snapshots alone did not verify usable playback; a recorded viewport resize could incidentally make some earlier playback work.
+
+The callback now retains sanitized URL-only metadata and rejects actual network-request records. Headers, bodies, console capture, input masking, production-host/privacy opt-outs and private-context gates retain their contracts. Replay page URLs now use the existing URL sanitizer. A regression invokes the installed SDK's actual URL-mask path and verifies that page metadata survives while request payloads are rejected. Corrected source and checks are committed before publishing; new visual playback and deployment receipts are verified separately. Old recordings lacking viewport metadata are preserved and may remain black.
