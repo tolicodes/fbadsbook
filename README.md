@@ -6,3 +6,9 @@ I started out thinking "how hard could Facebook marketing be. You get your desig
 
 This guide is a compilation of everything I learned.
 
+
+## Website
+
+The original guide is published at [fbads.toli.me](https://fbads.toli.me).
+See [hosting and interaction analytics](DEPLOYMENT.md) for its architecture,
+privacy boundaries and verification process.
