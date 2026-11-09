@@ -18,20 +18,14 @@ This is the preserved historical guide, not an update to present-day advertising
 
 Toli clarified that the requested portfolio link belongs on **tolicodes.com**, the public Sites portfolio. Its source commit `fdd334d440d6642a8167ff923d3fddba1622f677` changes the FB Ads Book title/action destinations to `https://fbads.toli.me/` and labels the action “Read the book.” The separate `toli.me` source change was reverted in `d64dd07` after this clarification; no Carrd edit is required.
 
-## Public session replay — October 7, 2026
+## Interaction analytics
 
-PostHog project 651591 (US), pinned posthog-js 1.438.2, loads asynchronously only on the production canonical hostname. Each session is labeled with `site`. Localhost, preview hosts, Do Not Track and Global Privacy Control skip initialization. Publishable client token is source configuration; no personal API credential is included.
-
-Inputs are masked; private-marked elements are blocked; console logs and network headers/bodies are excluded. Analytics URL properties remove queries, credentials and unknown fragments; this is not a guarantee of redaction of every replay snapshot URL. Public book/page text and images remain visible. No user identification or person profiles are created. Analytics failure does not interrupt rendering.
-
-The production build and all four analytics privacy-policy checks passed before committing. Deployment is verified below. Receipt/playback of a real recording is tracked separately in the Wiki/rollout evidence. Existing content, hosting and redirects are preserved.
-
-October 7 deployment verification: The Netlify production build is live: all seven chapters match the tested HTML byte for byte over trusted HTTPS. This documentation commit does not republish application code.
-
-## Replay viewport correction — October 7, 2026
-
-The original network-mask callback returned null for every call. SDK 1.438.2 also invokes it with a URL-only object to mask replay page metadata; dropping that call removed the rrweb Meta event and its viewport dimensions, leaving the playback iframe hidden. Received sessions/full DOM snapshots alone did not verify usable playback; a recorded viewport resize could incidentally make some earlier playback work.
-
-The callback now retains sanitized URL-only metadata and rejects actual network-request records. Headers, bodies, console capture, input masking, production-host/privacy opt-outs and private-context gates retain their contracts. Replay page URLs now use the existing URL sanitizer. A regression invokes the installed SDK's actual URL-mask path and verifies that page metadata survives while request payloads are rejected. Corrected source and checks are committed before publishing; new visual playback and deployment receipts are verified separately. Old recordings lacking viewport metadata are preserved and may remain black.
-
-Viewport correction deployed: runtime source 4665237e543ce59b5988a4d002593c9c51ea2903; existing Netlify automatic production publishing; root HTML matches rebuilt source. New toli.me playback visibly renders the recorded page. This verifies the corrected shared callback; per-host live source checks do not establish visual playback on every host. Old recordings lacking viewport metadata remain preserved. This documentation follow-up does not rebuild or redeploy runtime code.
+Microsoft Clarity project `zb5fa2mqgu` replaces PostHog on the production apex.
+The official asynchronous tag loads only in production on `fbads.toli.me` and
+skips previews, DNT/GPC, URLs with queries/fragments and credential-bearing
+referrers. Inputs and private-marked elements are masked before initialization;
+the project uses Strict text masking. Advertising and analytics storage consent
+are both denied. No custom identity or content is supplied. Startup is idempotent
+and best-effort, preserving reading if analytics fails. PostHog is no longer
+imported; old recordings remain historical. Focused privacy checks and the static
+build verify source; deployment and actual playback are recorded separately.
